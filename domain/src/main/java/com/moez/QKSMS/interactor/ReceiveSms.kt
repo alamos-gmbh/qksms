@@ -20,6 +20,7 @@ package com.moez.QKSMS.interactor
 
 import android.telephony.SmsMessage
 import com.moez.QKSMS.extensions.mapNotNull
+import com.moez.QKSMS.manager.AlamosSendManager
 import com.moez.QKSMS.manager.ExternalBlockingManager
 import com.moez.QKSMS.manager.NotificationManager
 import com.moez.QKSMS.manager.ShortcutManager
@@ -33,6 +34,7 @@ class ReceiveSms @Inject constructor(
     private val externalBlockingManager: ExternalBlockingManager,
     private val messageRepo: MessageRepository,
     private val notificationManager: NotificationManager,
+    private val alamosSendManager: AlamosSendManager,
     private val updateBadge: UpdateBadge,
     private val shortcutManager: ShortcutManager
 ) : Interactor<ReceiveSms.Params>() {
@@ -57,6 +59,7 @@ class ReceiveSms @Inject constructor(
 
                     messageRepo.insertReceivedSms(it.subId, address, body, time) // Add the message to the db
                 }
+                .doOnNext{ message -> alamosSendManager.sendToApager(message.body) } // Broadcast SMS to aPager App
                 .doOnNext { message -> conversationRepo.updateConversations(message.threadId) } // Update the conversation
                 .mapNotNull { message -> conversationRepo.getOrCreateConversation(message.threadId) } // Map message to conversation
                 .filter { conversation -> !conversation.blocked } // Don't notify for blocked conversations

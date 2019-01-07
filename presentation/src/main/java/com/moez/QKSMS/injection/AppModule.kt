@@ -31,23 +31,7 @@ import com.moez.QKSMS.feature.conversationinfo.injection.ConversationInfoCompone
 import com.moez.QKSMS.feature.themepicker.injection.ThemePickerComponent
 import com.moez.QKSMS.listener.ContactAddedListener
 import com.moez.QKSMS.listener.ContactAddedListenerImpl
-import com.moez.QKSMS.manager.ActiveConversationManager
-import com.moez.QKSMS.manager.ActiveConversationManagerImpl
-import com.moez.QKSMS.manager.AlarmManager
-import com.moez.QKSMS.manager.AlarmManagerImpl
-import com.moez.QKSMS.manager.AnalyticsManager
-import com.moez.QKSMS.manager.AnalyticsManagerImpl
-import com.moez.QKSMS.manager.ExternalBlockingManager
-import com.moez.QKSMS.manager.ExternalBlockingManagerImpl
-import com.moez.QKSMS.manager.KeyManager
-import com.moez.QKSMS.manager.KeyManagerImpl
-import com.moez.QKSMS.manager.NotificationManager
-import com.moez.QKSMS.manager.PermissionManager
-import com.moez.QKSMS.manager.PermissionManagerImpl
-import com.moez.QKSMS.manager.RatingManager
-import com.moez.QKSMS.manager.ShortcutManager
-import com.moez.QKSMS.manager.WidgetManager
-import com.moez.QKSMS.manager.WidgetManagerImpl
+import com.moez.QKSMS.manager.*
 import com.moez.QKSMS.mapper.CursorToContact
 import com.moez.QKSMS.mapper.CursorToContactImpl
 import com.moez.QKSMS.mapper.CursorToConversation
@@ -124,6 +108,9 @@ class AppModule(private var application: Application) {
 
     @Provides
     fun externalBlockingManager(manager: ExternalBlockingManagerImpl): ExternalBlockingManager = manager
+
+    @Provides
+    fun alamosSendManager(manager: AlamosSendManagerImpl): AlamosSendManager = manager
 
     @Provides
     fun provideKeyManager(manager: KeyManagerImpl): KeyManager = manager
