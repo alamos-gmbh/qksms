@@ -27,6 +27,7 @@ import com.moez.QKSMS.manager.ShortcutManager
 import com.moez.QKSMS.repository.ConversationRepository
 import com.moez.QKSMS.repository.MessageRepository
 import io.reactivex.Flowable
+import timber.log.Timber
 import javax.inject.Inject
 
 class ReceiveSms @Inject constructor(
@@ -64,6 +65,11 @@ class ReceiveSms @Inject constructor(
                 .doOnNext { message -> conversationRepo.updateConversations(message.threadId) } // Update the conversation
                 .mapNotNull { message -> conversationRepo.getOrCreateConversation(message.threadId) } // Map message to conversation
                 .filter { conversation -> !conversation.blocked } // Don't notify for blocked conversations
+                .filter { conversation ->
+                    val address = conversation.recipients.firstOrNull()?.address
+                    Timber.i("SMS from '$address'")
+                    if (address != null) !address.equals("alamos", ignoreCase = true) else true
+                }
                 .doOnNext { conversation -> if (conversation.archived) conversationRepo.markUnarchived(conversation.id) } // Unarchive conversation if necessary
                 .map { conversation -> conversation.id } // Map to the id because [delay] will put us on the wrong thread
                 .doOnNext { threadId -> notificationManager.update(threadId) } // Update the notification
