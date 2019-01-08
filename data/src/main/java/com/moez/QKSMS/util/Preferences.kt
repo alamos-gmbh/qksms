@@ -88,7 +88,7 @@ class Preferences @Inject constructor(private val rxPrefs: RxSharedPreferences) 
     val logging = rxPrefs.getBoolean("logging", false)
 
     fun theme(threadId: Long = 0): Preference<Int> {
-        val default = rxPrefs.getInteger("theme", 0xFF0097A7.toInt())
+        val default = rxPrefs.getInteger("theme", 0xFF31333E.toInt())
 
         return when (threadId) {
             0L -> default
