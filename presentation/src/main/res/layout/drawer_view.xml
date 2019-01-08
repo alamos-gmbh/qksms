@@ -176,20 +176,20 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/help"
-            style="@style/DrawerRow">
+        <!--<LinearLayout-->
+            <!--android:id="@+id/help"-->
+            <!--style="@style/DrawerRow">-->
 
-            <ImageView
-                style="@style/DrawerIcon"
-                android:src="@drawable/ic_help_black_24dp"
-                android:tint="?android:attr/textColorSecondary" />
+            <!--<ImageView-->
+                <!--style="@style/DrawerIcon"-->
+                <!--android:src="@drawable/ic_help_black_24dp"-->
+                <!--android:tint="?android:attr/textColorSecondary" />-->
 
-            <com.moez.QKSMS.common.widget.QkTextView
-                style="@style/DrawerText"
-                android:text="@string/drawer_help" />
+            <!--<com.moez.QKSMS.common.widget.QkTextView-->
+                <!--style="@style/DrawerText"-->
+                <!--android:text="@string/drawer_help" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
         <LinearLayout
             android:id="@+id/invite"
