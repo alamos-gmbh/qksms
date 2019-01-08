@@ -28,11 +28,11 @@ android {
     flavorDimensions "analytics"
 
     defaultConfig {
-        applicationId "com.moez.QKSMS"
+        applicationId "com.alamos_gmbh.ASMS"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 191
-        versionName "3.6.1"
+        versionCode 1
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField "String", "BUGSNAG_API_KEY", "\"${System.getenv("BUGSNAG_API_KEY")}\""
@@ -40,6 +40,13 @@ android {
 
     signingConfigs {
         release
+                {
+                    storeFile file("C:/alamos/keystore_apager2.jks")
+                    storePassword = System.getenv("keystore_password")
+                    println "StorePass = " + storePassword
+                    keyAlias "apager2"
+                    keyPassword = System.getenv("signingkey_password")
+                }
     }
 
     buildTypes {

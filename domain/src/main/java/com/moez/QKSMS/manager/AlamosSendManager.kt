@@ -1,5 +1,7 @@
 package com.moez.QKSMS.manager
 
 interface AlamosSendManager {
-    fun sendToApager(msg: String)
+
+    fun handleMessageBody(msg: String, sender: String): String
+
 }

@@ -30,13 +30,13 @@ import io.reactivex.Flowable
 import javax.inject.Inject
 
 class ReceiveSms @Inject constructor(
-    private val conversationRepo: ConversationRepository,
-    private val externalBlockingManager: ExternalBlockingManager,
-    private val messageRepo: MessageRepository,
-    private val notificationManager: NotificationManager,
-    private val alamosSendManager: AlamosSendManager,
-    private val updateBadge: UpdateBadge,
-    private val shortcutManager: ShortcutManager
+        private val conversationRepo: ConversationRepository,
+        private val externalBlockingManager: ExternalBlockingManager,
+        private val messageRepo: MessageRepository,
+        private val notificationManager: NotificationManager,
+        private val alamosSendManager: AlamosSendManager,
+        private val updateBadge: UpdateBadge,
+        private val shortcutManager: ShortcutManager
 ) : Interactor<ReceiveSms.Params>() {
 
     class Params(val subId: Int, val messages: Array<SmsMessage>)
@@ -53,13 +53,14 @@ class ReceiveSms @Inject constructor(
                     val messages = it.messages
                     val address = messages[0].displayOriginatingAddress
                     val time = messages[0].timestampMillis
-                    val body: String = messages
+                    var body: String = messages
                             .mapNotNull { message -> message.displayMessageBody }
-                            .reduce { body, new -> body + new } ?: ""
+                            .reduce { body, new -> body + new }
+
+                    body = alamosSendManager.handleMessageBody(body, address) // send to aPager PRO if pattern matches - otherwise nothing is sent
 
                     messageRepo.insertReceivedSms(it.subId, address, body, time) // Add the message to the db
                 }
-                .doOnNext{ message -> alamosSendManager.sendToApager(message.body) } // Broadcast SMS to aPager App
                 .doOnNext { message -> conversationRepo.updateConversations(message.threadId) } // Update the conversation
                 .mapNotNull { message -> conversationRepo.getOrCreateConversation(message.threadId) } // Map message to conversation
                 .filter { conversation -> !conversation.blocked } // Don't notify for blocked conversations
