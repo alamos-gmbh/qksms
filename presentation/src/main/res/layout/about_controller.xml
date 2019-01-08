@@ -43,6 +43,13 @@
             android:id="@+id/developer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:summary="@string/about_original_developer"
+            app:title="@string/about_original_developer_title" />
+
+        <com.moez.QKSMS.common.widget.PreferenceView
+            android:id="@+id/developerNew"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:summary="@string/about_developer"
             app:title="@string/about_developer_title" />
 
@@ -52,13 +59,6 @@
             android:layout_height="wrap_content"
             app:summary="@string/about_source"
             app:title="@string/about_source_title" />
-
-        <com.moez.QKSMS.common.widget.PreferenceView
-            android:id="@+id/changelog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:summary="@string/about_changelog"
-            app:title="@string/about_changelog_title" />
 
         <com.moez.QKSMS.common.widget.PreferenceView
             android:id="@+id/contact"
@@ -73,13 +73,6 @@
             android:layout_height="wrap_content"
             app:summary="@string/about_license"
             app:title="@string/about_license_title" />
-
-        <com.moez.QKSMS.common.widget.PreferenceView
-            android:id="@+id/copyright"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:summary="@string/about_copyright"
-            app:title="@string/about_copyright_title" />
 
     </LinearLayout>
 

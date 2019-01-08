@@ -239,6 +239,7 @@
     <string name="about_title">Über</string>
     <string name="about_version_title">Version</string>
     <string name="about_developer_title">Entwickler</string>
+    <string name="about_original_developer_title">Basierend auf der Arbeit von</string>
     <string name="about_source_title">Quelltext</string>
     <string name="about_changelog_title">Änderungsprotokoll</string>
     <string name="about_contact_title">Kontakt</string>

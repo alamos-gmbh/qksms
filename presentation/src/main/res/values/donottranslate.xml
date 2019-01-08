@@ -23,11 +23,10 @@
     <string name="qksms_plus_upgrade_c">Unlock forever for %1$s %2$s</string>
     <string name="qksms_plus_upgrade_d">One-time purchase of %1$s %2$s</string>
 
-    <string name="about_developer">Moez Bhatti</string>
-    <string name="about_source">https://github.com/moezbhatti/qksms</string>
-    <string name="about_changelog">https://github.com/moezbhatti/qksms/releases</string>
-    <string name="about_contact">team@qklabs.com</string>
+    <string name="about_developer">Alamos GmbH</string>
+    <string name="about_source">https://github.com/alamos-gmbh/qksms</string>
+    <string name="about_contact">apps@alamos-gmbh.com</string>
     <string name="about_license">GNU General Public License v3.0</string>
-    <string name="about_copyright">© 2014–2018</string>
+    <string name="about_original_developer">Moez Bhatti</string>
 
 </resources>

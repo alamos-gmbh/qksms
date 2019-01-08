@@ -37,9 +37,11 @@ class AboutPresenter @Inject constructor(
                     when (preference.id) {
                         R.id.developer -> navigator.showDeveloper()
 
+                        R.id.developerNew -> navigator.showNewDeveloper()
+
                         R.id.source -> navigator.showSourceCode()
 
-                        R.id.changelog -> navigator.showChangelog()
+//                        R.id.changelog -> navigator.showChangelog()
 
                         R.id.contact -> navigator.showSupport()
 

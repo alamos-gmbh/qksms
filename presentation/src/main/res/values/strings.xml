@@ -262,6 +262,7 @@
     <string name="about_title">About</string>
     <string name="about_version_title">Version</string>
     <string name="about_developer_title">Developer</string>
+    <string name="about_original_developer_title">Originally developed by</string>
     <string name="about_source_title">Source code</string>
     <string name="about_changelog_title">Changelog</string>
     <string name="about_contact_title">Contact</string>
