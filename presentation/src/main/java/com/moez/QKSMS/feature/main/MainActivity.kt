@@ -23,15 +23,10 @@ import android.animation.ObjectAnimator
 import android.app.AlertDialog
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.view.Gravity
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewStub
+import android.view.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
-import androidx.core.view.accessibility.AccessibilityEventCompat.setAction
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -45,13 +40,7 @@ import com.moez.QKSMS.common.Navigator
 import com.moez.QKSMS.common.androidxcompat.drawerOpen
 import com.moez.QKSMS.common.androidxcompat.scope
 import com.moez.QKSMS.common.base.QkThemedActivity
-import com.moez.QKSMS.common.util.extensions.autoScrollToStart
-import com.moez.QKSMS.common.util.extensions.dismissKeyboard
-import com.moez.QKSMS.common.util.extensions.resolveThemeColor
-import com.moez.QKSMS.common.util.extensions.scrapViews
-import com.moez.QKSMS.common.util.extensions.setBackgroundTint
-import com.moez.QKSMS.common.util.extensions.setTint
-import com.moez.QKSMS.common.util.extensions.setVisible
+import com.moez.QKSMS.common.util.extensions.*
 import com.moez.QKSMS.feature.conversations.ConversationItemTouchCallback
 import com.moez.QKSMS.feature.conversations.ConversationsAdapter
 import com.moez.QKSMS.repository.SyncRepository
@@ -93,15 +82,15 @@ class MainActivity : QkThemedActivity(), MainView {
                 backup.clicks().map { DrawerItem.BACKUP },
                 scheduled.clicks().map { DrawerItem.SCHEDULED },
                 blocking.clicks().map { DrawerItem.BLOCKING },
-                settings.clicks().map { DrawerItem.SETTINGS },
-                plus.clicks().map { DrawerItem.PLUS },
+                settings.clicks().map { DrawerItem.SETTINGS }))
+//                plus.clicks().map { DrawerItem.PLUS },
 //                help.clicks().map { DrawerItem.HELP },
-                invite.clicks().map { DrawerItem.INVITE }))
+//                invite.clicks().map { DrawerItem.INVITE }))
     }
     override val optionsItemIntent: Subject<Int> = PublishSubject.create()
     override val plusBannerIntent by lazy { plusBanner.clicks() }
-    override val dismissRatingIntent by lazy { rateDismiss.clicks() }
-    override val rateIntent by lazy { rateOkay.clicks() }
+    //    override val dismissRatingIntent by lazy { rateDismiss.clicks() }
+//    override val rateIntent by lazy { rateOkay.clicks() }
     override val conversationsSelectedIntent by lazy { conversationsAdapter.selectionChanges }
     override val confirmDeleteIntent: Subject<List<Long>> = PublishSubject.create()
     override val swipeConversationIntent by lazy { itemTouchCallback.swipes }
@@ -170,7 +159,7 @@ class MainActivity : QkThemedActivity(), MainView {
                     syncingProgress?.progressTintList = ColorStateList.valueOf(theme.theme)
                     syncingProgress?.indeterminateTintList = ColorStateList.valueOf(theme.theme)
                     plusIcon.setTint(theme.theme)
-                    rateIcon.setTint(theme.theme)
+//                    rateIcon.setTint(theme.theme)
                     compose.setBackgroundTint(theme.theme)
 
                     // Set the FAB compose icon color
@@ -220,9 +209,9 @@ class MainActivity : QkThemedActivity(), MainView {
         listOf(plusBadge1, plusBadge2).forEach { badge ->
             badge.isVisible = drawerBadgesExperiment.variant && !state.upgraded
         }
-        plus.isVisible = state.upgraded
+//        plus.isVisible = state.upgraded
         plusBanner.isVisible = !state.upgraded
-        rateLayout.setVisible(state.showRating)
+//        rateLayout.setVisible(state.showRating)
 
         compose.setVisible(state.page is Inbox || state.page is Archived)
         conversationsAdapter.emptyView = empty.takeIf { state.page is Inbox || state.page is Archived }
